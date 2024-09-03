@@ -1,0 +1,31 @@
+name: build
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: windows-latest        
+      
+        steps:
+          - uses: actions/checkout@v3
+          
+          - name: Setup .NET
+            uses: actions/setup-dotnet@v2
+            with:
+                dotnet-version: 8.0.x
+          
+          - name: Install dependencies
+            run: dotnet restore
+            working-directory: EtlProject
+
+          - name: Build
+            run: dotnet build --configuration Release --no-restore
+            working-directory: EtlProject
+
+          - name: Test
+            run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage"
+            working-directory: EtlProject
