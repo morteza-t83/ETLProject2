@@ -20,12 +20,12 @@ jobs:
           
           - name: Install dependencies
             run: dotnet restore
-            working-directory: EtlProject
+            working-directory: ETLProject2
 
           - name: Build
             run: dotnet build --configuration Release --no-restore
-            working-directory: EtlProject
+            working-directory: ETLProject2
 
           - name: Test
             run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage"
-            working-directory: EtlProject
+            working-directory: ETLProject2
