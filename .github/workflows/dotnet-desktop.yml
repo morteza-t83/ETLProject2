@@ -80,3 +80,4 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage"
+      working-directory: ..
